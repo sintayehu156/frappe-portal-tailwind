@@ -1,0 +1,19 @@
+{
+  "name": "tailwind",
+  "version": "1.0.0",
+  "description": "tailwind portal page",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tailwindcss -i ./tailwind/templates/base.css -o ./tailwind/public/css/styles.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
+  },
+  "dependencies": {
+    "flowbite": "^2.2.1"
+  }
+}
