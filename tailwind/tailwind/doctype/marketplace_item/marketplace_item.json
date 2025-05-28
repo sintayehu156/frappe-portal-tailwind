@@ -1,0 +1,93 @@
+{
+    "name": "Marketplace Item",
+    "module": "Tailwind",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "issingle": 0,
+    "istable": 0,
+    "quick_entry": 1,
+    "track_changes": 1,
+    "track_seen": 1,
+    "track_views": 0,
+    "allow_rename": 1,
+    "allow_import": 1,
+    "allow_copy": 1,
+    "sort_field": "sort_order",
+    "sort_order": "ASC",
+    "show_name_in_global_search": 1,
+    "fields": [
+        {
+            "fieldname": "item_name",
+            "fieldtype": "Data",
+            "label": "Item Name",
+            "reqd": 1,
+            "in_list_view": 1,
+            "bold": 1
+        },
+        {
+            "fieldname": "item_description",
+            "fieldtype": "Text",
+            "label": "Description"
+        },
+        {
+            "fieldname": "item_image",
+            "fieldtype": "Attach Image",
+            "label": "Image"
+        },
+        {
+            "fieldname": "price",
+            "fieldtype": "Currency",
+            "label": "Price"
+        },
+        {
+            "fieldname": "currency",
+            "fieldtype": "Link",
+            "label": "Currency",
+            "options": "Currency",
+            "hidden": 1,
+            "description": "Automatically set if Price is entered. Hidden by default, shown if needed."
+        },
+        {
+            "fieldname": "developer_name",
+            "fieldtype": "Data",
+            "label": "Developer Name"
+        },
+        {
+            "fieldname": "developer_link",
+            "fieldtype": "Data",
+            "options": "URL",
+            "label": "Developer Link"
+        },
+        {
+            "fieldname": "published",
+            "fieldtype": "Check",
+            "label": "Published",
+            "default": "0",
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "sort_order",
+            "fieldtype": "Int",
+            "label": "Sort Order",
+            "default": "0",
+            "in_list_view": 1
+        }
+    ],
+    "permissions": [
+        {
+            "role": "System Manager",
+            "read": 1, "write": 1, "create": 1, "delete": 1, "submit": 1, "cancel": 1, "amend": 1, "report": 1, "export": 1, "import": 1, "share": 1, "print": 1, "email": 1
+        },
+        {
+            "role": "Website Manager",
+            "read": 1, "write": 1, "create": 1, "delete": 1, "submit": 1, "cancel": 1, "report": 1, "export": 1, "import": 1, "share": 1
+        },
+        {
+            "role": "Guest",
+            "read": 1
+        }
+    ],
+    "links": [],
+    "icon": "fa fa-shopping-cart",
+    "color": "Green"
+}

@@ -1,0 +1,68 @@
+{% extends "templates/layout.html" %}
+
+{% block title %}{{ title or _("Marketplace") }}{% endblock %}
+
+{% block content %} {# Changed from page_content to content to match layout.html #}
+    {# Hero Section for Marketplace #}
+    <section class="relative bg-gray-700 text-white py-20 lg:py-32 flex content-center items-center justify-center" style="min-height: 60vh;">
+        <div class="absolute top-0 w-full h-full bg-center bg-cover" style="background-image: url('/assets/tailwind/images/marketplace-hero.jpg');"> {# Placeholder image path, ensure this asset exists or change path #}
+            <span id="blackOverlay" class="w-full h-full absolute opacity-50 bg-black"></span>
+        </div>
+        <div class="container relative mx-auto text-center">
+            <h1 class="text-white font-semibold text-4xl md:text-5xl">
+                Marketplace
+            </h1>
+            <p class="mt-4 text-lg text-gray-300">
+                Discover apps, tools, and integrations to enhance your experience.
+            </p>
+        </div>
+    </section>
+
+    {# Section to display marketplace items as cards #}
+    <section class="py-12 lg:py-20 bg-gray-100 dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            {% if not items and is_website_manager %}
+            <div class="text-center py-10">
+                <p class="text-lg text-gray-600 dark:text-gray-400">No marketplace items found. Add new items from the Desk.</p>
+            </div>
+            {% elif not items %}
+            <div class="text-center py-10">
+                <p class="text-lg text-gray-600 dark:text-gray-400">No marketplace items currently available. Please check back later.</p>
+            </div>
+            {% else %}
+            <div class="flex flex-wrap -mx-4">
+                {% for item in items %}
+                <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-4 mb-8">
+                    <div class="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden flex flex-col h-full">
+                        {% if item.item_image %}
+                        <img src="{{ item.item_image }}" alt="{{ item.item_name }}" class="w-full h-48 object-cover">
+                        {% else %}
+                        <div class="w-full h-48 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                            <span class="text-gray-500 dark:text-gray-400">No Image</span>
+                        </div>
+                        {% endif %}
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h5 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">{{ item.item_name }}</h5>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 flex-grow">{{ item.item_description or "No description available." }}</p>
+                            {% if item.price is not none %}
+                                <p class="text-lg font-bold text-purple-600 dark:text-purple-400 mb-2">{{ frappe.utils.format_currency(item.price, item.currency or frappe.get_doc('Global Defaults').default_currency) }}</p>
+                            {% endif %}
+                            {% if item.developer_name %}
+                                <p class="text-xs text-gray-500 dark:text-gray-300">
+                                    By: 
+                                    {% if item.developer_link %}
+                                        <a href="{{ item.developer_link }}" target="_blank" class="text-purple-600 hover:underline">{{ item.developer_name }}</a>
+                                    {% else %}
+                                        {{ item.developer_name }}
+                                    {% endif %}
+                                </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}
