@@ -1,0 +1,48 @@
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6">Contact Us</h1>
+    {% if success_message %}
+        <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
+            {{ success_message }}
+        </div>
+    {% endif %}
+    {% if error_message %}
+        <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
+            {{ error_message }}
+        </div>
+    {% endif %}
+    <form id="contact-form" method="POST" action="/contact">
+        {{ frappe.utils.get_csrf_token_input() }}
+        <div class="mb-4">
+            <label for="full_name" class="block text-gray-700 text-sm font-bold mb-2">Full Name*</label>
+            <input type="text" name="full_name" id="full_name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+        </div>
+        <div class="mb-4">
+            <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email*</label>
+            <input type="email" name="email" id="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+        </div>
+        <div class="mb-4">
+            <label for="phone" class="block text-gray-700 text-sm font-bold mb-2">Phone</label>
+            <input type="tel" name="phone" id="phone" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div class="mb-6">
+            <label for="message" class="block text-gray-700 text-sm font-bold mb-2">Message*</label>
+            <textarea name="message" id="message" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required></textarea>
+        </div>
+        <div>
+            <button type="submit" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                Send Message
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block script %}
+    <script>
+    // Optional: Client-side validation or dynamic behavior can be added here.
+    // For example, using the existing contact.js if needed.
+    </script>
+{% endblock %}
