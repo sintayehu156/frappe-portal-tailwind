@@ -1,16 +1,137 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="{{ lang or 'en' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        {%block title %} Sintayehu Shibeshi {%endblock%}
-    </title>
+    <title>{% block title %}{{ title or _("Website") }}{% endblock %}</title>
+    
+    <!-- Standard Meta Tags -->
+    <meta name="description" content="{{ description or '' }}">
+    <meta name="keywords" content="{{ keywords or '' }}">
+    
+    <!-- Frappe Standard Includes -->
+    {{ standard_head_html or "" }}
+
+    <!-- Tailwind CSS -->
     <link rel="stylesheet" href="/assets/tailwind/css/styles.css">
+    
+    <!-- Font Awesome (for social icons in footer) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Theme Colors -->
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    
+    {% block head_include %}{% endblock %}
 </head>
-<body >
-   {%block content %} {%endblock%}
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white flex flex-col min-h-screen">
+
+    <!-- Header -->
+    <header class="fixed w-full z-20 top-0 start-0 bg-white border-b border-gray-200 dark:bg-gray-900 dark:border-gray-600">
+        <nav class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src="/assets/tailwind/images/logo.png" class="h-8" alt="Zim Logo">
+                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">ZIM</span>
+            </a>
+            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                <a href="/contact" class="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">
+                    Get Started
+                </a>
+                <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+                <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                    <li>
+                        <a href="/" class="block py-2 px-3 rounded md:p-0 {% if route == '/home' or route == '/' %} text-white bg-purple-700 md:bg-transparent md:text-purple-700 dark:text-white md:dark:text-purple-500 {% else %} text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-purple-700 dark:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent dark:border-gray-700 {% endif %}" aria-current="page">Home</a>
+                    </li>
+                    <li>
+                        <a href="/about" class="block py-2 px-3 rounded md:p-0 {% if route == '/about' %} text-white bg-purple-700 md:bg-transparent md:text-purple-700 dark:text-white md:dark:text-purple-500 {% else %} text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-purple-700 dark:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent dark:border-gray-700 {% endif %}">About</a>
+                    </li>
+                    <li>
+                        <a href="/marketplace" class="block py-2 px-3 rounded md:p-0 {% if route == '/marketplace' %} text-white bg-purple-700 md:bg-transparent md:text-purple-700 dark:text-white md:dark:text-purple-500 {% else %} text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-purple-700 dark:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent dark:border-gray-700 {% endif %}">Marketplace</a>
+                    </li>
+                    <li>
+                        <a href="/features" class="block py-2 px-3 rounded md:p-0 {% if route == '/features' %} text-white bg-purple-700 md:bg-transparent md:text-purple-700 dark:text-white md:dark:text-purple-500 {% else %} text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-purple-700 dark:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent dark:border-gray-700 {% endif %}">Features</a>
+                    </li>
+                     <li>
+                        <a href="/blog" class="block py-2 px-3 rounded md:p-0 {% if route == '/blog' %} text-white bg-purple-700 md:bg-transparent md:text-purple-700 dark:text-white md:dark:text-purple-500 {% else %} text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-purple-700 dark:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent dark:border-gray-700 {% endif %}">Blogs</a>
+                    </li>
+                    <li>
+                        <a href="/jobs" class="block py-2 px-3 rounded md:p-0 {% if route == '/jobs' %} text-white bg-purple-700 md:bg-transparent md:text-purple-700 dark:text-white md:dark:text-purple-500 {% else %} text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-purple-700 dark:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent dark:border-gray-700 {% endif %}">Careers</a>
+                    </li>
+                    <li>
+                        <a href="/contact" class="block py-2 px-3 rounded md:p-0 {% if route == '/contact' %} text-white bg-purple-700 md:bg-transparent md:text-purple-700 dark:text-white md:dark:text-purple-500 {% else %} text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-purple-700 dark:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent dark:border-gray-700 {% endif %}">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow pt-16"> <!-- Add padding-top to offset fixed header, flex-grow to push footer -->
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative bg-gray-300 dark:bg-gray-800 pt-8 pb-6 mt-auto"> <!-- mt-auto to push to bottom -->
+      <div class="container mx-auto px-4">
+        <div class="flex flex-wrap text-left lg:text-left">
+          <div class="w-full lg:w-6/12 px-4">
+            <h4 class="text-3xl font-semibold text-gray-700 dark:text-gray-200">Let's keep in touch!</h4>
+            <h5 class="text-lg mt-0 mb-2 text-gray-600 dark:text-gray-400">
+              Find us on any of these platforms, we respond within 1-2 business days.
+            </h5>
+            <div class="mt-6 lg:mb-0 mb-6">
+              <button class="bg-white text-blue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
+                <i class="fab fa-twitter"></i></button><button class="bg-white text-blue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
+                <i class="fab fa-facebook-square"></i></button><button class="bg-white text-pink-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
+                <i class="fab fa-dribbble"></i></button><button class="bg-white text-gray-800 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
+                <i class="fab fa-github"></i>
+              </button>
+            </div>
+          </div>
+          <div class="w-full lg:w-6/12 px-4">
+            <div class="flex flex-wrap items-top mb-6">
+              <div class="w-full lg:w-4/12 px-4 ml-auto">
+                <span class="block uppercase text-gray-600 dark:text-gray-400 text-sm font-semibold mb-2">Useful Links</span>
+                <ul class="list-unstyled">
+                  <li><a class="text-gray-700 hover:text-purple-700 dark:text-gray-300 dark:hover:text-purple-500 font-semibold block pb-2 text-sm" href="/about">About Us</a></li>
+                  <li><a class="text-gray-700 hover:text-purple-700 dark:text-gray-300 dark:hover:text-purple-500 font-semibold block pb-2 text-sm" href="/blog">Blog</a></li>
+                  <li><a class="text-gray-700 hover:text-purple-700 dark:text-gray-300 dark:hover:text-purple-500 font-semibold block pb-2 text-sm" href="/features">Features</a></li>
+                  <li><a class="text-gray-700 hover:text-purple-700 dark:text-gray-300 dark:hover:text-purple-500 font-semibold block pb-2 text-sm" href="/jobs">Careers</a></li>
+                </ul>
+              </div>
+              <div class="w-full lg:w-4/12 px-4">
+                <span class="block uppercase text-gray-600 dark:text-gray-400 text-sm font-semibold mb-2">Other Resources</span>
+                <ul class="list-unstyled">
+                  <li><a class="text-gray-700 hover:text-purple-700 dark:text-gray-300 dark:hover:text-purple-500 font-semibold block pb-2 text-sm" href="#">MIT License</a></li>
+                  <li><a class="text-gray-700 hover:text-purple-700 dark:text-gray-300 dark:hover:text-purple-500 font-semibold block pb-2 text-sm" href="#">Terms &amp; Conditions</a></li>
+                  <li><a class="text-gray-700 hover:text-purple-700 dark:text-gray-300 dark:hover:text-purple-500 font-semibold block pb-2 text-sm" href="#">Privacy Policy</a></li>
+                  <li><a class="text-gray-700 hover:text-purple-700 dark:text-gray-300 dark:hover:text-purple-500 font-semibold block pb-2 text-sm" href="/contact">Contact Us</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="my-6 border-gray-400 dark:border-gray-700">
+        <div class="flex flex-wrap items-center md:justify-between justify-center">
+          <div class="w-full md:w-4/12 px-4 mx-auto text-center">
+            <div class="text-sm text-gray-600 dark:text-gray-400 font-semibold py-1">
+              Copyright © <span id="get-current-year">{{ now_year }}</span> Mevinai CMS
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Flowbite JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    
+    {% block body_include %}{% endblock %}
 </body>
 </html>

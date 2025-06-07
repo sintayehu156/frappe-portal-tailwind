@@ -1,0 +1,153 @@
+{% extends "templates/layout.html" %}
+
+{% block title %}{{ title or _("Features") }}{% endblock %}
+
+{% block content %}
+    {# Hero Section - Adapted for Features Page #}
+    <div class="relative pt-16 pb-32 flex content-center items-center justify-center" style="min-height: 75vh;">
+        <div class="absolute top-0 w-full h-full bg-center bg-cover"
+             style='background-image: url("https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1267&amp;q=80");'>
+            <span id="blackOverlay" class="w-full h-full absolute opacity-75 bg-black"></span>
+        </div>
+        <div class="container relative mx-auto">
+            <div class="items-center flex flex-wrap">
+                <div class="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
+                    <div class="pr-12">
+                        <h1 class="text-white font-semibold text-4xl sm:text-5xl">
+                            {{ doc.title or _("Features") }}
+                        </h1>
+                        <p class="mt-4 text-lg text-gray-300">
+                            Discover what makes our platform unique and powerful. We offer a range of carefully crafted tools and services.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden" style="height: 70px;">
+            <svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" version="1.1" viewBox="0 0 2560 100" x="0" y="0">
+                <polygon class="text-gray-300 dark:text-gray-800 fill-current" points="2560 0 2560 100 0 100"></polygon>
+            </svg>
+        </div>
+    </div>
+
+    {# Section to display feature items as cards #}
+    <section class="pb-20 bg-gray-300 dark:bg-gray-800 -mt-24">
+        <div class="container mx-auto px-4">
+            {% if features and features|length > 0 %}
+            <div class="flex flex-wrap justify-center">
+                {% for feature in features %}
+                <div class="lg:pt-12 pt-6 w-full md:w-6/12 lg:w-4/12 px-4 text-center">
+                    <div class="relative flex flex-col min-w-0 break-words bg-white dark:bg-gray-900 w-full mb-8 shadow-lg rounded-lg transition-transform transform hover:scale-105">
+                        <div class="px-4 py-5 flex-auto">
+                            {% if feature.icon_class %}
+                            <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-purple-500">
+                                <i class="{{ feature.icon_class }} text-xl"></i>
+                            </div>
+                            {% endif %}
+                            <h6 class="text-xl font-semibold text-gray-800 dark:text-white">{{ feature.title }}</h6>
+                            <p class="mt-2 mb-4 text-gray-600 dark:text-gray-400">{{ feature.description }}</p>
+                            {% if feature.link_url and feature.link_text %}
+                              <a href="{{ feature.link_url }}" class="font-semibold text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300">{{ feature.link_text }} <i class="fas fa-arrow-right ml-1"></i></a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="text-center py-12">
+                <p class="text-xl text-gray-700 dark:text-gray-300">No features to display at the moment. Please check back later!</p>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+
+    {# Static Content Section 1: "Working with us is a pleasure" #}
+    <section class="relative py-20 bg-white dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="items-center flex flex-wrap">
+                <div class="w-full md:w-5/12 px-4 mr-auto ml-auto mb-12 md:mb-0">
+                    <div class="text-gray-600 dark:text-gray-300 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-gray-100 dark:bg-gray-700">
+                        <i class="fas fa-user-friends text-xl"></i>
+                    </div>
+                    <h3 class="text-3xl mb-2 font-semibold leading-normal text-gray-800 dark:text-white">
+                        Working with us is a pleasure
+                    </h3>
+                    <p class="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-700 dark:text-gray-400">
+                        Our dedicated team is passionate about crafting solutions that not only meet your needs but also exceed your expectations. We believe in collaborative partnerships.
+                    </p>
+                    <p class="text-lg font-light leading-relaxed mt-0 mb-4 text-gray-700 dark:text-gray-400">
+                        From initial concept to final deployment, we are with you every step of the way, ensuring a smooth and enjoyable experience.
+                    </p>
+                    <a href="/contact" class="font-bold text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300 mt-8">
+                        Get In Touch
+                    </a>
+                </div>
+                <div class="w-full md:w-4/12 px-4 mr-auto ml-auto">
+                    <div class="relative flex flex-col min-w-0 break-words bg-white dark:bg-gray-800 w-full mb-6 shadow-lg rounded-lg">
+                        <img alt="Top Notch Services" src="/assets/tailwind/images/feature 1.avif" class="w-full align-middle rounded-t-lg">
+                        <blockquote class="relative p-8 mb-4 bg-purple-600">
+                             <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 583 95" class="absolute left-0 w-full block" style="height: 95px; top: -94px;">
+                                <polygon points="-30,95 583,95 583,65" class="text-purple-600 fill-current"></polygon>
+                            </svg>
+                            <h4 class="text-xl font-bold text-white">
+                                Top Notch Services
+                            </h4>
+                            <p class="text-md font-light mt-2 text-white">
+                                We pride ourselves on delivering services that are second to none, combining expertise with a commitment to quality.
+                            </p>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# Static Content Section 2: "A growing company" #}
+    <section class="relative py-20 bg-gray-100 dark:bg-gray-800">
+         <div class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20" style="height: 80px;">
+            <svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" version="1.1" viewBox="0 0 2560 100" x="0" y="0">
+                <polygon class="text-gray-100 dark:text-gray-800 fill-current" points="2560 0 2560 100 0 100"></polygon>
+            </svg>
+        </div>
+        <div class="container mx-auto px-4">
+            <div class="items-center flex flex-wrap">
+                <div class="w-full md:w-4/12 ml-auto mr-auto px-4 mb-12 md:mb-0">
+                    <img alt="Growing Company" class="max-w-full rounded-lg shadow-lg" src="/assets/tailwind/images/feature 2.avif">
+                </div>
+                <div class="w-full md:w-5/12 ml-auto mr-auto px-4">
+                    <div class="md:pr-12">
+                        <div class="text-purple-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-purple-200">
+                            <i class="fas fa-rocket text-xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-semibold text-gray-800 dark:text-white">A growing company</h3>
+                        <p class="mt-4 text-lg leading-relaxed text-gray-700 dark:text-gray-400">
+                            We are constantly expanding our horizons, exploring new technologies, and improving our offerings to serve you better.
+                        </p>
+                        <ul class="list-none mt-6">
+                            <li class="py-2">
+                                <div class="flex items-center">
+                                    <div><span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-purple-600 bg-purple-200 mr-3"><i class="fas fa-fingerprint"></i></span></div>
+                                    <div><h4 class="text-gray-600 dark:text-gray-300">Carefully Crafted Components</h4></div>
+                                </div>
+                            </li>
+                            <li class="py-2">
+                                <div class="flex items-center">
+                                    <div><span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-purple-600 bg-purple-200 mr-3"><i class="fab fa-html5"></i></span></div>
+                                    <div><h4 class="text-gray-600 dark:text-gray-300">Amazing Page Examples</h4></div>
+                                </div>
+                            </li>
+                            <li class="py-2">
+                                <div class="flex items-center">
+                                    <div><span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-purple-600 bg-purple-200 mr-3"><i class="far fa-paper-plane"></i></span></div>
+                                    <div><h4 class="text-gray-600 dark:text-gray-300">Dynamic Components</h4></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

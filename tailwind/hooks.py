@@ -10,12 +10,12 @@ app_license = "mit"
 # ------------------
 
 # include js, css files in header of desk.html
-# app_include_css = "/assets/tailwind/css/tailwind.css"
+app_include_css = "/assets/tailwind/css/styles.css"
 # app_include_js = "/assets/tailwind/js/tailwind.js"
 
 # include js, css files in header of web template
-# web_include_css = "/assets/tailwind/css/tailwind.css"
-# web_include_js = "/assets/tailwind/js/tailwind.js"
+web_include_css = ["/assets/tailwind/css/styles.css"]
+# web_include_js = ["/assets/tailwind/js/flowbite.min.js"] # Commented out as per plan
 
 # include custom scss in every website theme (without file extension ".scss")
 # website_theme_scss = "tailwind/public/scss/website"

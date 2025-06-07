@@ -1,0 +1,85 @@
+{
+    "name": "Feature Item",
+    "module": "Tailwind",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "issingle": 0,
+    "istable": 0,
+    "quick_entry": 1,
+    "track_changes": 1,
+    "track_seen": 0,
+    "track_views": 0,
+    "allow_rename": 1,
+    "allow_import": 1,
+    "allow_copy": 1,
+    "sort_field": "sort_order",
+    "sort_order": "ASC",
+    "show_name_in_global_search": 1,
+    "fields": [
+        {
+            "fieldname": "title",
+            "fieldtype": "Data",
+            "label": "Title",
+            "reqd": 1,
+            "in_list_view": 1,
+            "in_standard_filter": 1,
+            "bold": 1
+        },
+        {
+            "fieldname": "description",
+            "fieldtype": "Text",
+            "label": "Description",
+            "reqd": 1
+        },
+        {
+            "fieldname": "icon_class",
+            "fieldtype": "Data",
+            "label": "Icon Class",
+            "description": "e.g., 'fas fa-award' or 'fab fa-github'"
+        },
+        {
+            "fieldname": "link_url",
+            "fieldtype": "Data",
+            "label": "Link URL",
+            "options": "URL"
+        },
+        {
+            "fieldname": "link_text",
+            "fieldtype": "Data",
+            "label": "Link Text",
+            "description": "e.g., 'Learn More'"
+        },
+        {
+            "fieldname": "published",
+            "fieldtype": "Check",
+            "label": "Published",
+            "default": "0",
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "sort_order",
+            "fieldtype": "Int",
+            "label": "Sort Order",
+            "default": "0",
+            "description": "Lower numbers appear first",
+            "in_list_view": 1
+        }
+    ],
+    "permissions": [
+        {
+            "role": "System Manager",
+            "read": 1, "write": 1, "create": 1, "delete": 1, "submit": 1, "cancel": 1, "amend": 1, "report": 1, "export": 1, "import": 1, "share": 1, "print": 1, "email": 1
+        },
+        {
+            "role": "Website Manager",
+            "read": 1, "write": 1, "create": 1, "delete": 1, "submit": 1, "cancel": 1, "report": 1, "export": 1, "import": 1, "share": 1
+        },
+        {
+            "role": "Guest",
+            "read": 1
+        }
+    ],
+    "links": [],
+    "icon": "fa fa-star",
+    "color": "Purple"
+}
